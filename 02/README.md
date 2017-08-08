@@ -2,5 +2,10 @@
 
 ## 02
 
-webWorker
+*webWorker
+
+*promise 实现 Ajax 类
+
+
+
 

@@ -2,12 +2,12 @@
 
 ## 01
 
-游戏
+* 游戏
 
 ## 02
 
-webWorker and promise of Ajax
+* webWorker and promise of Ajax
 
 ## 03
 
-Gulp
+* Gulp

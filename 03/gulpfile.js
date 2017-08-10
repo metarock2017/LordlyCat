@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var browsersync = require('browser-sync').create();
+var browsersync = require('browser-sync').create();//自动刷新
 var imagemin = require('gulp-imagemin'); //图片压缩插件
 
 //html
@@ -50,7 +50,7 @@ gulp.task('image', function() {
 gulp.task('serve', function() {
     gulp.start('html', 'less_css', 'sass_css', 'image', 'js');
     browsersync.init({
-        port: 2016,
+        port: 3366,
         server: {
             baseDir: ['dist']
         }

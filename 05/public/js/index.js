@@ -70,7 +70,7 @@ function send() {
     num = parseInt(localStorage.getItem('num'));
     if (num <= size + 1) {
         ajax({
-            url: 'http://127.0.0.1:8806/',
+            url: '/',
             method: 'POST',
             //contentType: 'text/plain',
             data: {

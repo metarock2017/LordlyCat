@@ -4,7 +4,7 @@ const path = require('path');
 const mysql = require('mysql');
 const app = express();
 const bodyParser = require('body-parser');
-const port = 3366;
+const port = 8806;
 
 // var Client = mysql.Client,
 //     client = new Client();
@@ -41,7 +41,7 @@ app.post('/', function(req, res) {
     var data = req.body;
     var name = data[0];
     var id;
-
+    console.log(data);
     //存入数据库
     if (parseInt(data[2]) === 0) {
         connection.query("INSERT INTO files SET name=?, data=?", [data[0], data[1]]);

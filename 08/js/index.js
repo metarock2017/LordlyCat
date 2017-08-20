@@ -4,8 +4,8 @@ var w = document.body.clientWidth,
     canvas = document.querySelector('canvas');
 
 
-wrapper.style.width = w + 'px';
-wrapper.style.height = h + 'px';
+/*wrapper.style.width = w + 'px';
+wrapper.style.height = h + 'px';*/
 canvas.width = w;
 canvas.height = h;
 
@@ -62,23 +62,27 @@ function moving(ball) {
     ball.draw();
     ball.x += ball.speedX;
     ball.y += ball.speedY;
-    console.log(ball.x);
+    //console.log(ball.x);
 
     //边界碰撞检测
     if (ball.x >= canvas.width - ball.radius) {
         ball.speedX = -ball.speedX;
+        ball.x = canvas.width - ball.radius;
         ball.color = changeColor();
     }
     if (ball.x <= 0 + ball.radius) {
         ball.speedX = -ball.speedX;
+        ball.x = ball.radius;
         ball.color = changeColor();
     }
     if (ball.y >= canvas.height - ball.radius) {
         ball.speedY = -ball.speedY;
+        ball.y = canvas.height - ball.radius;
         ball.color = changeColor();
     }
     if (ball.y <= 0 + ball.radius) {
         ball.speedY = -ball.speedY;
+        ball.y = ball.radius;
         ball.color = changeColor();
     }
 }
@@ -97,6 +101,7 @@ function go() {
 }
 
 var ballArr = [];
+
 function inputNum() {
     var num = 0,
         n = prompt("请输入你想要的小球数量（10～100 视觉效果最佳）:");
@@ -104,13 +109,12 @@ function inputNum() {
     if (n < 0) {
         alert('请输入大于0的数');
         n = prompt("请输入你想要的小球数量（10～100 视觉效果最佳）:");
-        num =  parseInt(n);
-    }else if (n > 0 && n < 800) {
-        num =  parseInt(n);
-    } 
-    else if (n >= 800) {
+        num = parseInt(n);
+    } else if (n > 0 && n < 800) {
+        num = parseInt(n);
+    } else if (n >= 800) {
         alert('卡死你！！！');
-        num =  parseInt(n);
+        num = parseInt(n);
     }
 
     for (var i = 0; i < num; i++) {

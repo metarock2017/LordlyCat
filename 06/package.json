@@ -9,7 +9,11 @@
   "author": "lordlycat",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "crypto": "^1.0.1",
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
     "mysql": "^2.14.1",
     "socket.io": "^2.0.3",
     "webpack": "^3.5.4"

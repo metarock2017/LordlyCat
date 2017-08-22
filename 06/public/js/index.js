@@ -1,19 +1,25 @@
-var socket = io();
-var messages = document.querySelector('#messages');
-var form = document.querySelector('form');
-var input = document.querySelector('#input');
-var button = document.querySelector('button');
-var showWindow = document.querySelector('.showWindow');
-var stage = document.querySelector('.stage');
+var socket = io(),
+    messages = document.querySelector('#messages'),
+    form = document.querySelector('form'),
+    input = document.querySelector('#input'),
+    button = document.querySelector('button'),
+    showWindow = document.querySelector('.showWindow'),
+    stage = document.querySelector('.stage'),
+    username = document.querySelector('.username');
 
 
 //向服务器发送数据
 function send() {
 
-    if (input.value == '') {
-        alert('输入内容不能为空')
+    if (input.value === '') {
+        alert('输入内容不能为空');
     } else {
-        socket.emit('chat message', input.value);
+        var data = {
+            user: username.innerHTML,
+            message: input.value
+        }
+        console.log(data);
+        socket.emit('chat message', data);
 
 
         var xhr = new XMLHttpRequest();
@@ -27,7 +33,7 @@ function send() {
 }
 
 button.addEventListener('click', send, false);
-button.addEventListener('clik', function () {
+button.addEventListener('clik', function() {
     barrage.create(input.value);
 }, false)
 
@@ -63,7 +69,7 @@ var barrage = {
         newBox.style.fontSize = this.fontSize;
         newBox.style.color = this.color[parseInt(Math.random() * 8)];
         stage.appendChild(newBox);
-        setTimeout(function () {
+        setTimeout(function() {
             newBox.style.left = '-100%';
         }, 200);
     },
@@ -82,5 +88,43 @@ function clear() {
 }
 setInterval(clear, 2000);
 
+//缓存
+function setCookie(name, value, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = name + "=" + value + "; " + "path=/" + "; " + expires;
+}
 
-//barrage.create();
+function getCookie(name) {
+    var name = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    console.log(user);
+    if (user != "") {
+        username.innerHTML = user;
+        alert("Welcome " + user);
+    }
+}
+
+checkCookie();
+
+//退出登录
+var out = document.querySelector('.out');
+
+out.addEventListener('click', function() {
+    setCookie('username', '', -1);
+    console.log(document.cookie);
+    window.location.href = '/';
+}, false);
+
+
+//The end

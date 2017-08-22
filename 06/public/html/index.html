@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>chat</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="showWindow">
+            <div class="stage"></div>
+        </div>
+        <span class="username"></span>
+        <div class="out">Sign out</div>
+        <div class="history">
+            <ul id="messages"></ul>
+        </div>
+        <div class="form">
+            <input id="input" autocomplete="off" />
+            <button>Send</button>
+        </div>
+    </div>
+    <script src="../socket.io/socket.io.js"></script>
+    <script src="../js/index.js" type="text/javascript" charset="utf-8" async defer></script>
+</body>
+
+</html>

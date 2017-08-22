@@ -1,27 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>chat</title>
+    <title>登陆注册</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <script src="js/Ajax.js" type="text/javascript" charset="utf-8" async defer></script>
+    <script src="js/md5.js" type="text/javascript" charset="utf-8" async defer></script>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="showWindow">
-            <div class="stage"></div>
+        <div class="tag">
+            <div class="register on">register</div>
+            <div class="login off">login</div>
         </div>
-        <div class="history">
-            <ul id="messages"></ul>
+        <div class="register_input">
+            <input type="text" name="username" placeholder="name">
+            <input type="password" name="password" placeholder="password">
+            <button type="" class="register_btn">register</button>
         </div>
-        <div class="form">
-            <input id="input" autocomplete="off" />
-            <button>Send</button>
+        <div class="login_input">
+            <input type="text" name="username" placeholder="name">
+            <input type="password" name="password" placeholder="password">
+            <button type="" class="login_btn">login</button>
         </div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="js/index.js" type="text/javascript" charset="utf-8" async defer></script>
+
+    <script src="js/login.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
 
 </html>

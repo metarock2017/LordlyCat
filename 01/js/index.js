@@ -1,9 +1,11 @@
 var canvas = document.querySelector('#canvas'),
     ctx = canvas.getContext("2d"),
+    audio = document.querySelectorAll('audio'),
     backgroundColor = "#002b36",
     lose,
     difficultyTimer,
     createTimer,
+    shootAudioTimer,
     createTime,
     difficulty,
     score,
@@ -21,7 +23,7 @@ var canvas = document.querySelector('#canvas'),
 
 //新游戏开始前重置参数
 function reset() {
-    
+
     ready = true;
     lose = 0;
     difficulty = 1;
@@ -54,6 +56,7 @@ function init() {
     initTimer();
     drawScoreBoard();
     redraw();
+    audio[3].play();
 
     for (var i = 0; i < 40; i++) {
         full[i] = new Bullet();
@@ -83,6 +86,7 @@ function redrawEverything() {
                     gameOver = true;
                     click = false;
                     fire = false;
+                    audio[3].pause();
                     setTimeout(function() {
                         click = true;
                     }, 2500);
@@ -112,7 +116,11 @@ function drawReady() {
 
     ctx.strokeStyle = 'white';
     ctx.font = '70px serif';
-    ctx.strokeText('Are You Ready ?', 500, 340);
+    ctx.strokeText('Are You Ready ?', 500, 320);
+
+    ctx.font = '40px serif';
+    ctx.strokeText('Please click anywhere to begin', 500, 400);
+
 }
 
 drawReady();
@@ -126,26 +134,31 @@ function drawGameOver() {
 
     ctx.fillStyle = 'red';
     ctx.font = '70px serif';
-    ctx.fillText('Game Over !', 500, 240);
+    ctx.fillText('Game Over !', 500, 220);
 
     ctx.fillStyle = 'pink';
-    ctx.fillText('Final Score :', 500, 360);
+    ctx.fillText('Final Score :', 500, 310);
 
-    ctx.fillText(score, 500, 480);
+    ctx.fillText(score, 500, 400);
+
+    ctx.strokeStyle = 'white';
+    ctx.font = '40px serif';
+    ctx.strokeText('Please click anywhere to back to ready', 500, 460);
+    ctx.strokeText('after three seconds', 500, 500);
 }
 
 
 //蓄能
 var energy = 0;
 setInterval(function() {
-    if (energy <= 200) {
-        energy += (1 + score / 1000);
-    }
-    if (energy > 200) {
-        energy = 200;
-    }
-}, 1000)
-//能量条
+        if (energy <= 200) {
+            energy += (1 + score / 1000);
+        }
+        if (energy > 200) {
+            energy = 200;
+        }
+    }, 1000)
+    //能量条
 function drawEnergy() {
     ctx.strokeStyle = 'pink';
     ctx.strokeRect(60, 200, 15, 200);
@@ -193,6 +206,9 @@ function redraw() {
     if (gameOver === true) {
 
         window.cancelAnimationFrame(redrawTimer);
+        audio[0].pause();
+        audio[1].pause();
+        clearInterval(shootAudioTimer);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawGameOver();
     }
@@ -252,13 +268,14 @@ function fireBullet() {
     }
 }
 
-
+//火力全开技能
 function fullFire() {
 
     if (energy >= 200) {
         for (var i = 0; i < full.length; i++) {
             toDraw.push(full[i]);
         }
+        audio[2].play();
         energy = 0;
     }
 }
@@ -279,9 +296,9 @@ function canvasClick() {
     if (click) {
 
         //鼠标点击开火
-        if (fire) {
-            fireBullet();
-        }
+        // if (fire) {
+        //     fireBullet();
+        // }
 
         if (gameOver) {
 
@@ -289,16 +306,26 @@ function canvasClick() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             reset();
             drawReady();
-
             return false;
         }
 
         if (ready) {
             init();
+            audio[0].play();
+            shootAudioTimer = setInterval(function() {
+                audio[0].currentTime = 1.0;
+                audio[0].play();
+            }, 1000);
         }
     }
 }
 
+//自动开火
+setInterval(function() {
+    if (fire) {
+        fireBullet();
+    }
+}, 200);
 
 //移除下次不需要渲染的对象
 function remove(obj) {
@@ -329,7 +356,7 @@ function createEnemy() {
         lineMotion(newEnemy, v);
     } else {
         curveMotion(newEnemy, a, f, v);
-    } 
+    }
 
     toDraw.push(newEnemy);
 }
@@ -460,6 +487,8 @@ Bullet.prototype.redraw = function(sign) {
         if (e !== myself) {
             if (checkShoot(myself, e)) {
                 death(e);
+                audio[1].currentTime = 0.0;
+                audio[1].play();
                 if (!through) {
                     remove(myself);
                 }

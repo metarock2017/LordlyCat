@@ -1,0 +1,172 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 10px; }
+
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  html {
+    font-size: 11px; } }
+
+@media screen and (min-width: 376px) and (max-width: 414px) {
+  html {
+    font-size: 12px; } }
+
+@media screen and (min-width: 415px) and (max-width: 639px) {
+  html {
+    font-size: 15px; } }
+
+@media screen and (min-width: 640px) and (max-width: 719px) {
+  html {
+    font-size: 20px; } }
+
+@media screen and (min-width: 720px) and (max-width: 749px) {
+  html {
+    font-size: 22.5px; } }
+
+@media screen and (min-width: 750px) and (max-width: 799px) {
+  html {
+    font-size: 23.5px; } }
+
+@media screen and (min-width: 800px) {
+  html {
+    font-size: 25px; } }
+
+#wrapper {
+  min-width: 320px;
+  max-width: 1260px;
+  margin: 0 auto; }
+
+.headTop {
+  width: 100%;
+  height: 32rem;
+  color: white;
+  background: url(../img/05.jpg) no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden; }
+
+.seven {
+  width: 100%;
+  height: 32rem;
+  background: lightgreen; }
+
+.twentyHours {
+  width: 100%;
+  height: 32rem;
+  background: lightgreen; }
+
+/*坐标位置*/
+.position {
+  margin-top: 2rem;
+  margin-left: 2rem; }
+
+.positionIcon {
+  display: inline-block;
+  width: 2.6rem;
+  height: 2.7rem;
+  float: left;
+  background: url(../img/坐标.png) no-repeat;
+  background-size: 100% 100%; }
+
+.where {
+  margin-left: 0.5rem;
+  display: inline-block;
+  font-size: 1.5rem; }
+
+.releaseTime {
+  display: inline-block;
+  font-size: 0.7rem;
+  margin-left: 0.5rem; }
+
+/*天气详情*/
+.weather {
+  width: 90%;
+  height: 16rem;
+  margin-top: 20%;
+  margin-left: 2rem;
+  border: solid 1px lightgray; }
+
+.weather .temperature {
+  width: 12rem;
+  height: 4.2rem;
+  font-size: 5rem;
+  font-family: "STHeiti";
+  font-weight: lighter;
+  float: left; }
+
+.description {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-top: 3.2rem;
+  margin-left: 0.4rem; }
+
+.weatherIcon {
+  display: inline;
+  width: 3.9rem;
+  height: 2.5rem;
+  float: left;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  background: url(../img/多云_2.png) no-repeat;
+  background-size: 100% 100%; }
+
+.other {
+  height: 3rem;
+  margin-top: 1.7rem; }
+
+.small {
+  display: inline-block;
+  height: 2.6rem;
+  font-size: 0.7rem;
+  padding-left: 1.6rem;
+  padding-top: 0.1rem;
+  float: left; }
+
+.wind {
+  width: 6.8rem;
+  background: url(../img/wind.png) no-repeat;
+  background-size: 18% 50%; }
+
+.humidity {
+  width: 4rem;
+  background: url(../img/湿度.png) no-repeat;
+  background-size: 25% 50%; }
+
+.pressure {
+  width: 5rem;
+  background: url(../img/月亮.png) no-repeat;
+  background-size: 20% 50%; }
+
+.air {
+  width: 4rem;
+  background: url(../img/月亮.png) no-repeat;
+  background-size: 23% 50%; }
+
+.sevenDays {
+  display: inline-block;
+  width: 4.5rem;
+  background: rgba(25, 23, 20, 0.6);
+  font-size: 0.7rem;
+  text-align: center;
+  margin-left: 0.3rem;
+  margin-top: 1rem;
+  border-radius: 20%;
+  cursor: pointer; }
+
+.hours {
+  display: inline-block;
+  width: 5.5rem;
+  background: rgba(25, 23, 20, 0.6);
+  font-size: 0.7rem;
+  text-align: center;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  border-radius: 30%;
+  cursor: pointer; }
+
+.sevenDays:hover, .hours:hover {
+  background: white;
+  color: gray; }
